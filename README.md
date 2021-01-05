@@ -22,29 +22,28 @@ I designed the following database schema containing three tables. See the [schem
 
 ### Data Dictionary
 
-"department" table:
-| Field Name | Data Type | Key | Description | Example Value |
-| ---------- | --------- | --- | ----------- | ------------- |
-|id          |INT        |PK   |Unique identifier for a department|1|
-|name        |VARCHAR(30)|     |Name of the department      | Finance |
+**department**
+| Field Name | Data Type | Key | Description                       | Example Value |
+| ---------- | --------- | --- | --------------------------------- | ------------- |
+|**id**      |INT        |PK   |Unique identifier for a department |1              |
+|**name**    |VARCHAR(30)|     |Name of the department             |Sales         |
 
-"role" table:
-| Field Name | Data Type | Key | Description | Example Value |
-| ---------- | --------- | --- | ----------- | ------------- |
-|id          |INT        |PK   |Unique identifier for a role|1|
-|title       |VARCHAR(30)|     |Title of the role      | Customer Service Representative |
-|salary       |VARCHAR(30)|     |The salary that the role receives  | 50000.50 |
-|salary       |VARCHAR(30)|     |The id of the department that the role belongs to    | 1 |
+**role**
+| Field Name        | Data Type   | Key | Description                                      | Example Value|
+| ----------------- | ----------- | --- | ------------------------------------------------ | ------------ |
+|**id**             |INT          |PK   |Unique identifier for a role                      |1             |
+|**title**          |VARCHAR(30)  |     |Title of the role                                 |Sales Lead    |
+|**salary**         |DECIMAL(0, 2)|     |The salary that the role receives                 |80000         |
+|**department_id**  |INT          |FK   |The id of the department that the role belongs to |1             |
 
-"employee" Table:
-"role" table:
-| Field Name | Data Type | Key | Description | Example Value |
-| ---------- | --------- | --- | ----------- | ------------- |
-|id          |INT        |PK   |Unique identifier for a employee|1|
-|first_name       |VARCHAR(30)|    |The first name of a employee     | Peter |
-|last_name       |VARCHAR(30)|     |The salary that the role receives  | Parker |
-|role_id       |INT|FK    |The id of the role that a employee is assigned    | 1 |
-|manager_id    |INT|FK    |The id of another employee that manages the employee. Note: This field may be null if the employee has no manager    | 1 |
+**employee**
+| Field Name    | Data Type | Key | Description                                                                | Example Value |
+| ------------- | --------- | --- | -------------------------------------------------------------------------- | ------------- |
+|**id**         |INT        |PK   |Unique identifier for a employee                                            |1              |
+|**first_name** |VARCHAR(30)|     |The first name of a employee                                                | John          |
+|**last_name**  |VARCHAR(30)|     |The salary that the role receives                                           | Doe           |
+|**role_id**    |INT        |FK   |The id of the role that a employee is assigned                              | 1             |
+|**manager_id** |INT        |FK   |The id of the employee's manager; may be null if the employee has no manager| 1             |
 
 ## Table of Contents
 
