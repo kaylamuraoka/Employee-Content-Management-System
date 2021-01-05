@@ -10,15 +10,41 @@ This command-line application helps a business owner/manager to view and manage 
 2. View departments, roles, employees
 3. Update employee roles
 
-#### Concepts Used
+### Concepts Used
 
 Developers are often tasked with creating interfaces that make it easy for non-developers to view and interact with information stored in databases. Often these interfaces are known as Content Management Systems. Thus, to exercise these concepts, I built a command-line application using node, inquirer, and MySQL that functions as a solution for managing a company's employees.
+
+### Database Diagram
 
 I designed the following database schema containing three tables. See the [schema.sql](db/schema.sql) file in the db folder to see how the database was created.
 
 ![MySQL database schema diagram](Assets/schema.png)
 
-#### 
+### Data Dictionary
+
+"department" table:
+| Field Name | Data Type | Key | Description | Example Value |
+| ---------- | --------- | --- | ----------- | ------------- |
+|id          |INT        |PK   |Unique identifier for a department|1|
+|name        |VARCHAR(30)|     |Name of the department      | Finance |
+
+"role" table:
+| Field Name | Data Type | Key | Description | Example Value |
+| ---------- | --------- | --- | ----------- | ------------- |
+|id          |INT        |PK   |Unique identifier for a role|1|
+|title       |VARCHAR(30)|     |Title of the role      | Customer Service Representative |
+|salary       |VARCHAR(30)|     |The salary that the role receives  | 50000.50 |
+|salary       |VARCHAR(30)|     |The id of the department that the role belongs to    | 1 |
+
+"employee" Table:
+"role" table:
+| Field Name | Data Type | Key | Description | Example Value |
+| ---------- | --------- | --- | ----------- | ------------- |
+|id          |INT        |PK   |Unique identifier for a employee|1|
+|first_name       |VARCHAR(30)|    |The first name of a employee     | Peter |
+|last_name       |VARCHAR(30)|     |The salary that the role receives  | Parker |
+|role_id       |INT|FK    |The id of the role that a employee is assigned    | 1 |
+|manager_id    |INT|FK    |The id of another employee that manages the employee. Note: This field may be null if the employee has no manager    | 1 |
 
 ## Table of Contents
 
