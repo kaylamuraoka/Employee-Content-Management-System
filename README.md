@@ -77,7 +77,12 @@ npm i console.table
 
 ## Usage
 
-To use this app, run the index.js file in the project folder. A series of prompts will be generated, answer each question and press enter.
+To use this app, run the server.js file in the project folder. A series of prompts will be generated, answer each question and press enter.
+
+``` 
+
+node server.js
+```
 
 ## License
 
