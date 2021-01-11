@@ -23,35 +23,35 @@ I designed the following database schema containing three tables. See the [schem
 ### Data Dictionary
 
 **department**
-| Field Name | Data Type | Key | Description                       | Example Value |
+| Field Name | Data Type | Key | Description | Example Value |
 | ---------- | --------- | --- | --------------------------------- | ------------- |
-|**id**      |INT        |PK   |Unique identifier for a department |1              |
-|**name**    |VARCHAR(30)|     |Name of the department             |Sales         |
+|**id** |INT |PK |Unique identifier for a department |1 |
+|**name** |VARCHAR(30)| |Name of the department |Sales |
 
 **role**
-| Field Name        | Data Type   | Key | Description                                      | Example Value|
+| Field Name | Data Type | Key | Description | Example Value|
 | ----------------- | ----------- | --- | ------------------------------------------------ | ------------ |
-|**id**             |INT          |PK   |Unique identifier for a role                      |1             |
-|**title**          |VARCHAR(30)  |     |Title of the role                                 |Sales Lead    |
-|**salary**         |DECIMAL(0, 2)|     |The salary that the role receives                 |80000         |
-|**department_id**  |INT          |FK   |The id of the department that the role belongs to |1             |
+|**id** |INT |PK |Unique identifier for a role |1 |
+|**title** |VARCHAR(30) | |Title of the role |Sales Lead |
+|**salary** |DECIMAL(0, 2)| |The salary that the role receives |80000 |
+|**department_id** |INT |FK |The id of the department that the role belongs to |1 |
 
 **employee**
-| Field Name    | Data Type | Key | Description                                                                | Example Value |
+| Field Name | Data Type | Key | Description | Example Value |
 | ------------- | --------- | --- | -------------------------------------------------------------------------- | ------------- |
-|**id**         |INT        |PK   |Unique identifier for a employee                                            |1              |
-|**first_name** |VARCHAR(30)|     |The first name of a employee                                                | John          |
-|**last_name**  |VARCHAR(30)|     |The salary that the role receives                                           | Doe           |
-|**role_id**    |INT        |FK   |The id of the role that a employee is assigned                              | 1             |
-|**manager_id** |INT        |FK   |The id of the employee's manager; may be null if the employee has no manager| 1             |
+|**id** |INT |PK |Unique identifier for a employee |1 |
+|**first_name** |VARCHAR(30)| |The first name of a employee | John |
+|**last_name** |VARCHAR(30)| |The salary that the role receives | Doe |
+|**role_id** |INT |FK |The id of the role that a employee is assigned | 1 |
+|**manager_id** |INT |FK |The id of the employee's manager; may be null if the employee has no manager| 1 |
 
 ## Table of Contents
 
-* [**Installation**](#installation)
-* [**Usage**](#usage)
-* [**License**](#license)
-* [**Contributing**](#contributing)
-* [**Questions**](#questions)
+- [**Installation**](#installation)
+- [**Usage**](#usage)
+- [**License**](#license)
+- [**Contributing**](#contributing)
+- [**Questions**](#questions)
 
 ## Installation
 
@@ -59,15 +59,15 @@ This command-line application uses [**Node.js**](https://nodejs.org/en/download/
 
 The dependencies required for this project are:
 
-* The [**MySQL**](https://www.npmjs.com/package/mysql) NPM package to connect to your MySQL database and perform queries.
+- The [**MySQL**](https://www.npmjs.com/package/mysql) NPM package to connect to your MySQL database and perform queries.
 
-* The [**InquirerJs**](https://www.npmjs.com/package/inquirer) NPM package to interact with the user via the command-line.
+- The [**InquirerJs**](https://www.npmjs.com/package/inquirer) NPM package to interact with the user via the command-line.
 
-* [**console.table**](https://www.npmjs.com/package/console.table) to print MySQL rows to the console. There is a built-in version of console.table, but the NPM package formats the data a little better for our purposes.
+- [**console.table**](https://www.npmjs.com/package/console.table) to print MySQL rows to the console. There is a built-in version of console.table, but the NPM package formats the data a little better for our purposes.
 
 To initialize your project and install these required dependencies, open a command prompt at the project's directory and run:
 
-``` 
+```
 
 npm init -y  // initialize the project with NPM
 npm i mysql
@@ -79,7 +79,7 @@ npm i console.table
 
 To use this app, run the server.js file in the project folder. A series of prompts will be generated, answer each question and press enter.
 
-``` 
+```
 
 node server.js
 ```
@@ -96,6 +96,6 @@ All comments and suggestions regarding improvements to this project are welcome.
 
 Please use the contact information below if you would like to reach me with any questions.
 
-* Github Profile: [**@kaylamuraoka**](https://github.com/kaylamuraoka)
+- Github Profile: [**@kaylamuraoka**](https://github.com/kaylamuraoka)
 
-* Email: [**kmurs98@gmail.com**]
+- Email: [**kmurs98@gmail.com**]

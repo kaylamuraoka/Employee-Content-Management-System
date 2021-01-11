@@ -32,8 +32,10 @@ const runSearch = () => {
         "View All Employees",
         "Add Employee",
         "Update An Employee's Role",
+        "Remove Employee",
         "View All Roles",
         "Add Role",
+        "Remove Role",
         "View All Departments",
         "Add Department",
         "Remove Department",
@@ -54,12 +56,20 @@ const runSearch = () => {
           updateEmployeeRole();
           break;
 
+        case "Remove Employee":
+          removeEmployee();
+          break;
+
         case "View All Roles":
           viewRoles();
           break;
 
         case "Add Role":
           addRole();
+          break;
+
+        case "Remove Role":
+          removeRole();
           break;
 
         case "View All Departments":
@@ -71,8 +81,9 @@ const runSearch = () => {
           break;
 
         case "Remove Department":
-          removeDept();
+          removeDepartment();
           break;
+
         case "Exit":
           connection.end();
           break;
@@ -307,6 +318,50 @@ const updateEmployeeRole = () => {
   );
 };
 
+// Remove a selected Employee by their name form the "employee" table
+const removeEmployee = () => {
+  connection.query(
+    "SELECT id AS value, CONCAT(first_name, ' ', last_name) AS name FROM employee ORDER BY name ASC",
+    function (err, res) {
+      if (err) throw err;
+      let array = JSON.parse(JSON.stringify(res));
+
+      inquirer
+        .prompt({
+          name: "employee",
+          type: "list",
+          message: "Select the employee you want to delete?",
+          choices: array,
+        })
+        .then((answer) => {
+          connection.query(
+            "DELETE FROM employee WHERE id = ?",
+            [answer.employee],
+            (err, res) => {
+              if (err) {
+                console.log(
+                  "\x1b[31m",
+                  "Error: Cannot delete or update a parent row: a foreign key constraint fails.\n"
+                );
+                runSearch();
+              } else {
+                console.log(
+                  "\x1b[32m",
+                  res.affectedRows + " record deleted successfully!"
+                );
+                console.log(
+                  "\x1b[32m",
+                  "Your employee table has been updated\n"
+                );
+                runSearch();
+              }
+            }
+          );
+        });
+    }
+  );
+};
+
 // View all roles in the "role" table
 const viewRoles = () => {
   const query =
@@ -390,6 +445,47 @@ const addRole = () => {
   );
 };
 
+// Remove a selected role by it's name form the "role" table
+const removeRole = () => {
+  connection.query(
+    "SELECT id AS value, title AS name FROM role ORDER BY name ASC",
+    function (err, res) {
+      if (err) throw err;
+      let array = JSON.parse(JSON.stringify(res));
+
+      inquirer
+        .prompt({
+          name: "role",
+          type: "list",
+          message: "Select the role you want to delete?",
+          choices: array,
+        })
+        .then((answer) => {
+          connection.query(
+            "DELETE FROM role WHERE id = ?",
+            [answer.role],
+            (err, res) => {
+              if (err) {
+                console.log(
+                  "\x1b[31m",
+                  "Error: Cannot delete or update a parent row: a foreign key constraint fails.\n"
+                );
+                runSearch();
+              } else {
+                console.log(
+                  "\x1b[32m",
+                  res.affectedRows + " record deleted successfully!"
+                );
+                console.log("\x1b[32m", "Your role table has been updated\n");
+                runSearch();
+              }
+            }
+          );
+        });
+    }
+  );
+};
+
 // View all departments in the "department" table
 const viewDepartments = () => {
   const query = "SELECT id AS ID, name AS Name FROM department ORDER BY ID;";
@@ -427,51 +523,47 @@ const addDepartment = () => {
 };
 
 // Remove a selected department by it's name form the "department" table
-const removeDept = () => {
-  // empty array to dynamically populate current department names
-  let deptObjArray = [];
-  let deptChoices2 = [];
-  // selects all rows in the "name" column, pushes name for each into the array in alphabetical order
+const removeDepartment = () => {
   connection.query(
-    "SELECT id, name FROM department ORDER BY name ASC",
-    function (err, data) {
+    "SELECT id AS value, name AS name FROM department ORDER BY name ASC",
+    function (err, res) {
       if (err) throw err;
-      for (i = 0; i < data.length; i++) {
-        deptObj = { id: data[i].id, name: data[i].name };
-        deptObjArray.push(deptObj);
-        deptChoices2.push(data[i].name);
-      }
+      let array = JSON.parse(JSON.stringify(res));
+
+      inquirer
+        .prompt({
+          name: "department",
+          type: "list",
+          message: "Select the department you want to delete?",
+          choices: array,
+        })
+        .then((answer) => {
+          connection.query(
+            "DELETE FROM department WHERE id = ?",
+            [answer.department],
+            (err, res) => {
+              if (err) {
+                console.log(
+                  "\x1b[31m",
+                  "Error: Cannot delete or update a parent row: a foreign key constraint fails.\n"
+                );
+                runSearch();
+              } else {
+                console.log(
+                  "\x1b[32m",
+                  res.affectedRows + " record deleted successfully!"
+                );
+                console.log(
+                  "\x1b[32m",
+                  "Your department table has been updated\n"
+                );
+                runSearch();
+              }
+            }
+          );
+        });
     }
   );
-  inquirer
-    .prompt([
-      {
-        name: "deptName",
-        type: "list",
-        message: "Select the name of the department you'd like to remove:",
-        choices: deptChoices2,
-      },
-      {
-        name: "confirm",
-        type: "confirm",
-        message: "Are you sure you want to delete this department?",
-        default: "yes",
-      },
-    ])
-    .then((answers) => {
-      const query = "DELETE FROM department WHERE name = ?";
-      connection.query(query, [answers.deptName], (err, result) => {
-        if (err) throw err;
-        console.log("\x1b[32m", "Your department table has been updated\n");
-        console.log(
-          "\x1b[32m",
-          `${answers.deptName} department has successfully been deleted from the database.\n`
-        );
-
-        // Show action prompts
-        runSearch();
-      });
-    });
 };
 
 // You can loop over the array and test for that property:
