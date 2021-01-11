@@ -9,6 +9,19 @@ This command-line application helps a business owner/manager to view and manage 
 1. Add departments, roles, employees
 2. View departments, roles, employees
 3. Update employee roles
+4. Delete departments, roles, employees
+
+### Demonstration of actions to manipulate the "employee" table:
+
+![Demonstration of the actions to manipulate the "employee" table](Assets/Manipulating_Employee_Table_Demo.gif)
+
+### Demonstration of actions to manipulate the "role" table:
+
+![Demonstration of the actions to manipulate the "role" table](Assets/Manipulating_Role_Table_Demo.gif)
+
+### Demonstration of actions to manipulate the "department" table:
+
+![Demonstration of the actions to manipulate the "department" table](Assets/Manupulating_Department_Table_Demo.gif)
 
 ### Concepts Used
 
